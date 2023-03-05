@@ -4,8 +4,15 @@ void main() => runApp(const MaterialApp(
       home: WeatherCard(),
     ));
 
-class WeatherCard extends StatelessWidget {
+class WeatherCard extends StatefulWidget {
   const WeatherCard({super.key});
+
+  @override
+  State<WeatherCard> createState() => _WeatherCardState();
+}
+
+class _WeatherCardState extends State<WeatherCard> {
+  int ninjaLevel = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +23,15 @@ class WeatherCard extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.grey[800],
         elevation: 0.0,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            ninjaLevel += 1;
+          });
+        },
+        backgroundColor: Colors.grey[800],
+        child: const Icon(Icons.add),
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0.0),
@@ -58,9 +74,9 @@ class WeatherCard extends StatelessWidget {
             const SizedBox(
               height: 10.0,
             ),
-            const Text(
-              '200',
-              style: TextStyle(
+            Text(
+              '$ninjaLevel',
+              style: const TextStyle(
                   color: Colors.amberAccent,
                   letterSpacing: 2.0,
                   fontSize: 20.0,
